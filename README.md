@@ -63,6 +63,7 @@ gcc PBKDF2_AES256.c -o PBKDF2_AES256 -lcrypto
 #### **Features:**
 - Encrypted DEK/KEK inside Database(HSM)
 - Encrypts user-provided-message using AES-256-GCM with unencrypted DEK
+- Authentication tag to ensure message integrity
 - Random IV generation with OpenSSL
 
 #### **To Compile and Run:**
@@ -98,7 +99,7 @@ export AZURE_KEY_NAME="KEK"
 
 #### **Run the Program:**
 ```bash
-./azure_encrypt
+./HSM_AZURE_AES256
 ```
 
 #### **User Input:**
