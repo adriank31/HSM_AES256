@@ -45,21 +45,7 @@ choco install curl jq
 
 ## Program Versions & Usage
 
-### **v1: Password Hashing & HMAC Authentication**
-#### **Features:**
-- Hashes passwords with SHA-256
-- Adds random salt for extra security
-- Uses HMAC-SHA256 for message integrity verification
-
-#### **To Compile and Run:**
-```bash
-gcc password_hashing.c -o password_hashing -lcrypto
-./password_hashing
-```
-
----
-
-### **v2: Secure Key Derivation & AES Encryption**
+### **v1: Secure Key Derivation & AES Encryption**
 #### **Features:**
 - PBKDF2-HMAC-SHA256 derives keys from passwords
 - AES-256-GCM provides authenticated encryption
@@ -67,8 +53,22 @@ gcc password_hashing.c -o password_hashing -lcrypto
 
 #### **To Compile and Run:**
 ```bash
-gcc pbkdf2_aes_encryption.c -o pbkdf2_aes -lcrypto
-./pbkdf2_aes
+gcc PBKDF2_AES256.c -o PBKDF2_AES256 -lcrypto
+./PBKDF2_AES256
+```
+
+---
+
+### **v2: AES Encryption & HSM Simulation**
+#### **Features:**
+- Encrypted DEK/KEK inside Database(HSM)
+- Encrypts user-provided-message using AES-256-GCM with unencrypted DEK
+- Random IV generation with OpenSSL
+
+#### **To Compile and Run:**
+```bash
+gcc HSM_AES256.c -o HSM_AES256 -lcrypto
+./HSM_AES256
 ```
 
 ---
@@ -82,8 +82,8 @@ gcc pbkdf2_aes_encryption.c -o pbkdf2_aes -lcrypto
 
 #### **To Compile and Run:**
 ```bash
-gcc azure_keyvault_integration.c -o azure_encrypt -lcrypto -lcurl
-./azure_encrypt
+gcc HSM_AZURE_AES256.c -o HSM_AZURE_AES256 -lcrypto -lcurl
+./HSM_AZURE_AES256
 ```
 
 #### **Set Environment Variables:**
